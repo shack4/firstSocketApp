@@ -27,12 +27,14 @@ app.get('/', function(req, res){
     });
 });*/
 
+
 io.on('connection', function(socket){
     userCount++;
     console.log('Users Connected: '+userCount);
     socket.on('disconnect', function(){
         userCount--;
-        console.log('User DC, Users Connected: '+userCount);
+
+        console.log('*DC* Users Connected: '+userCount);
     });
     socket.on('chat message', function(msg){
         io.emit("chat message", msg);
